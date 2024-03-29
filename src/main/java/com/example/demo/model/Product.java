@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.io.File;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,12 +1,12 @@
 package com.example.demo.service.impl;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,6 @@ import com.example.demo.model.Product;
 import com.example.demo.repo.ProductRepo;
 import com.example.demo.service.ProductService;
 
-import jakarta.persistence.criteria.Path;
 
 
 @Service
@@ -102,5 +101,25 @@ public class ProductServiceImpl implements ProductService{
 		   e.printStackTrace();
 		   return null;
 	   }
+   }
+   @Override
+   public List<Product> getFiveProduct(int size){
+	   List<Product> product = prepo.findAll(PageRequest.of(0, size)).toList();
+	   return product;
+   }
+   @Override
+   public List<Product> getPage(int page){
+	   List<Product> product = prepo.findAll(PageRequest.of(page, 4)).toList();
+	   return product;
+   }
+   @Override
+   public List<Product> getByName(String pageName){
+	   List<Product> product = prepo.findByName(pageName);
+	   return product;
+   }
+   @Override
+   public List<Product> getProductBySearch(String productName){
+	   List<Product> product = prepo.findBySearchingName(productName);
+	   return product;
    }
 }

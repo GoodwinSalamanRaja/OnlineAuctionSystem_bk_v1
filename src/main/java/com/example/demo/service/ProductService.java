@@ -9,10 +9,13 @@ import com.example.demo.model.Product;
 
 
 public interface ProductService {
-
    ResponseEntity<?> setProduct(Product product,MultipartFile image);
    List<Product> getAllProduct();
    void deleteProduct(int id);
    Product getProduct(int productId);
-   Product updateProduct(int productId, Product product, MultipartFile image); 
+   Product updateProduct(int productId, Product product, MultipartFile image);
+   List<Product> getFiveProduct(int size);
+   List<Product> getPage(int page);
+   List<Product> getByName(String pageName);
+   List<Product> getProductBySearch(String productName); 
 }

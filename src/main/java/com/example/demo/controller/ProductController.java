@@ -30,11 +30,6 @@ public class ProductController {
 	   System.out.println(product.getName() + product.getCategory() + product.getDescription() + product.getRegprice() + product.getBidprice() + product.getBiddate());
 	   return ResponseEntity.status(HttpStatus.OK).body(products);
    }
-   @GetMapping("/getAll")
-   public ResponseEntity<?> getAllProduct(){
-	   List<Product> product = pservice.getAllProduct();
-	   return ResponseEntity.status(HttpStatus.OK).body(product);
-   }
    @DeleteMapping("/delete/{id}")
    public ResponseEntity<?> deleteProduct(@PathVariable int id){
 	   pservice.deleteProduct(id);
@@ -49,5 +44,25 @@ public class ProductController {
    public ResponseEntity<?> updateProduct(@PathVariable int productId,@ModelAttribute Product product,@RequestParam("productImage") MultipartFile image){
 	   Product saved = pservice.updateProduct(productId,product,image);
 	   return ResponseEntity.status(HttpStatus.OK).body(saved);
+   }
+   @GetMapping("/getFive/{size}")
+   public ResponseEntity<?> getFiveProduct(@PathVariable int size){
+	   List<Product> product = pservice.getFiveProduct(size);
+	   return ResponseEntity.status(HttpStatus.OK).body(product);
+   }
+   @GetMapping("/getPage/{page}")
+   public ResponseEntity<?> getPage(@PathVariable int page){
+	   List<Product> product = pservice.getPage(page);
+	   return ResponseEntity.status(HttpStatus.OK).body(product);
+   }
+   @GetMapping("/getByName/{pageName}")
+   public ResponseEntity<?> getByName(@PathVariable String pageName){
+	   List<Product> product = pservice.getByName(pageName);
+	   return ResponseEntity.status(HttpStatus.OK).body(product);
+   }
+   @GetMapping("/getBySearch/{productName}")
+   public ResponseEntity<?> getProductBySearch(@PathVariable String productName){
+	   List<Product> product = pservice.getProductBySearch(productName);
+	   return ResponseEntity.status(HttpStatus.OK).body(product);
    }
 }
